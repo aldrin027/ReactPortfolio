@@ -1,162 +1,178 @@
-import React, { Component } from "react";
-import { Progress, CardDeck } from "reactstrap";
+import React, { useEffect } from "react";
+import { CardDeck } from "reactstrap";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHtml5 } from '@fortawesome/free-solid-svg-icons';
 import {
-    faHtml5, faCss3Alt, faJs, faPhp, faReact, faLaravel,
-    faGithub,
-    faFacebookF, faGooglePlusG, faSkype
-} from '@fortawesome/free-brands-svg-icons';
+  // faHtml5,
+  // faCss3Alt,
+  // faJs,
+  // faPhp,
+  // faReact,
+  // faLaravel,
+  faGithub,
+  faFacebookF,
+  faGooglePlusG,
+  faSkype
+} from "@fortawesome/free-brands-svg-icons";
 import Card from "../components/ProjectCard";
-import Progressbar from '../components/Progressbar';
+// import Progressbar from "../components/Progressbar";
+import Slider from "../components/Slider";
+const isInViewPort = elem => {
+  var bounding = elem.getBoundingClientRect();
+  return bounding.top < window.innerHeight && bounding.bottom >= 0;
+};
+const AboutMe = () => {
+  useEffect(() => {
+    const parallax = document.getElementsByClassName("parallax-wrapper")[0];
+    window.addEventListener(
+      "scroll",
+      () => {
+        const second = document.getElementsByClassName("third-floor")[0];
+        const project = document.getElementsByClassName("project_card");
 
-class AboutMe extends Component {
+        if (isInViewPort(second)) {
+          console.log("viewport");
+          for (let i = 0; i < project.length; i++) {
+            setTimeout(() => {
+              project[i].classList.add("custom-fadeIn");
+            }, 500 * i);
+          }
+        }
+      },
+      1
+    );
+  }, []);
 
-    render() {
-        return <div>
-
-            {/* Portfolio DP */}
-            <div className="portfolio-image">
-                <img src="images/tiger.jpeg" alt="Tiger"/>
-            </div>
-
-            <h2>About Me</h2>
-            <div className="first-floor col-xs-12">
-                {/* About Me */}
-                <div className="about-me">
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dignissim consectetur ligula eget aliquam. Nunc fermentum neque leo, non interdum velit imperdiet quis. Nullam scelerisque nunc sit amet eros placerat condimentum. Nulla malesuada condimentum dui, in luctus lacus ornare at. Curabitur odio lorem, tempor vitae nisi eget, porta pulvinar mauris. In aliquet gravida arcu nec lacinia. Proin velit neque, vehicula sit amet fermentum vestibulum, laoreet eget tortor.
-                    In non lobortis erat. Sed eget nisi pretium, congue neque ut, tempor mi. Phasellus nec leo a urna ullamcorper tristique in sit amet sapien. Integer dictum lectus placerat blandit efficitur. Nunc ac eros consequat est efficitur elementum non eu tortor. Nunc vitae consequat tortor. Aenean et aliquam tortor.
-                    </p>
-                </div>
-            </div>
-            
-            <h2>Skills</h2>
-            <div className="second-floor col-xs-12">
-                {/* Skills */}
-                <div className="my-skills">
-
-                <div className="native-languages">
-                    <div className="col-xs-3">
-                        <FontAwesomeIcon icon={faHtml5}/> HTML
-                        <div className="text-center">80%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="30" color="warning"></Progress>
-                            <Progress bar animated value="20" color="success"></Progress>
-                        </Progress>
-                        {/* <Progressbar skillLevel={80} /> */}
-                        {/* <Progress className="text-center" animated value={50} color="warning"> 50% </Progress> */}
-                    </div>
-                    <div className="col-xs-3">
-                        <FontAwesomeIcon icon={faCss3Alt}/> CSS
-                        <div className="text-center">50%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="20" color="warning"></Progress>
-                        </Progress>
-                        {/* <Progress className="text-center" animated value={50} color="warning"> 50% </Progress> */}
-                    </div>
-                    <div className="col-xs-3">
-                        <FontAwesomeIcon icon={faJs}/> Javascript
-                        <div className="text-center">80%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="30" color="warning"></Progress>
-                            <Progress bar animated value="20" color="success"></Progress>
-                        </Progress>
-                        {/* <Progress className="text-center" animated value={80} color="success"> 80% </Progress> */}
-                    </div>
-                    <div className="col-xs-3">
-                        <FontAwesomeIcon icon={faPhp}/> PHP
-                        <div className="text-center">80%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="30" color="warning"></Progress>
-                            <Progress bar animated value="20" color="success"></Progress>
-                        </Progress>
-                        {/* <Progress className="text-center" animated value={90} color="success"> 90% </Progress> */}
-                    </div>
-                </div>
-
-                <div className="frameworks">
-                    <div className="col-xs-6">
-                        <FontAwesomeIcon icon={faReact}/> ReactJS
-                        <div className="text-center">60%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="30" color="warning"></Progress>
-                        </Progress>
-                        {/* <Progress animated value={60} color="warning"> 60% </Progress> */}
-                    </div>
-                    <div className="col-xs-6">
-                        <FontAwesomeIcon icon={faLaravel}/> Laravel
-                        <div className="text-center">80%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="30" color="warning"></Progress>
-                            <Progress bar animated value="20" color="success"></Progress>
-                        </Progress>
-                            {/* <Progress bar animated value="20" color="success"></Progress> */}
-                        {/* <Progress animated value={90} color="success"> 90% </Progress> */}
-                    </div>
-                    <div className="col-xs-6">
-                        <FontAwesomeIcon icon={faGithub}/> Github
-                        <div className="text-center">70%</div>
-                        <Progress multi>
-                            <Progress bar animated value="30" color="danger"></Progress>
-                            <Progress bar animated value="30" color="warning"></Progress>
-                            <Progress bar animated value="10" color="success"></Progress>
-                        </Progress>
-                        {/* <Progress animated value={70} color="warning"> 70% </Progress> */}
-                    </div>
-                </div>
-
-                </div>
-            </div>
-        
-            <h2>Projects</h2>
-            <div className="third-floor col-xs-12">
-                <div className="project container">
-                    <CardDeck>
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                    </CardDeck>
-                </div>
-            </div>
-
-            <h2>Contact Me</h2>
-            <div className="fourth-floor col-xs-12">
-                <div className="container social-apps-container">
-                    <div className="social-app col-xs-2">
-                        <a href="javascript:void(0)">
-                            <FontAwesomeIcon icon={faFacebookF} size="2x"></FontAwesomeIcon>
-                        </a>
-                    </div>
-                    <div className="social-app col-xs-2">
-                        <a href="javascript:void(0)">
-                            <FontAwesomeIcon icon={faGooglePlusG} size="2x"></FontAwesomeIcon>
-                        </a>
-                    </div>
-                    <div className="social-app col-xs-2">
-                        <a href="javascript:void(0)">
-                            <FontAwesomeIcon icon={faGithub} size="2x"></FontAwesomeIcon>
-                        </a>
-                    </div>
-                    <div className="social-app col-xs-2">
-                        <a href="javascript:void(0)">
-                            <FontAwesomeIcon icon={faSkype} size="2x"></FontAwesomeIcon>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>;
+  const frontend = [
+    {
+      src: "/images/html.png",
+      altText: "HTML",
+      caption: "HTML"
+    },
+    {
+      src: "/images/css.png",
+      altText: "CSS",
+      caption: "CSS"
+    },
+    {
+      src: "/images/js.png",
+      altText: "Javascript",
+      caption: "Javascript"
+    },
+    {
+      src: "/images/github.png",
+      altText: "github",
+      caption: "github"
     }
-    
-}
+  ];
+
+  const backend = [
+    {
+      src: "/images/php.png",
+      altText: "PHP",
+      caption: "PHP"
+    },
+    {
+      src: "/images/apache.png",
+      altText: "Apache",
+      caption: "Apache"
+    },
+    {
+      src: "/images/laravel.png",
+      altText: "Laravel",
+      caption: "Laravel"
+    },
+    {
+      src: "/images/reactjs.png",
+      altText: "React JS",
+      caption: "React JS"
+    }
+  ];
+
+  return (
+    <>
+      <div className="parallax-wrapper">
+        {/* Portfolio DP */}
+        {/* <div className="portfolio-image">
+          <img src="images/tiger.jpeg" alt="Tiger" />
+        </div> */}
+        <div className="content col-xs-12">
+          <h2>About Me</h2>
+
+          {/* About Me */}
+          <div className="about-me">
+            <h5>Hello I'm Aldrin.</h5>
+            <p>
+              I'm a Fullstack Web Developer that wants to be update about the
+              latest technology trends. I'm also a Trader/Investor but still got
+              a long way about this. Loves music
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="regular-wrapper second-floor">
+        <div className="col-xs-12 container">
+          <h2>Skills</h2>
+          <div className="row">
+            <div className="col-md-12">
+              <h2>Front-end</h2>
+              <Slider items={frontend} />
+            </div>
+            <div className="col-md-12">
+              <h2>Back-end</h2>
+              <Slider items={backend} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="parallax-wrapper">
+        <div>
+          <div className="third-floor col-xs-12">
+            <h2>Projects</h2>
+            <div className="project container">
+              <CardDeck>
+                <Card className="project_card" />
+                <Card className="project_card" />
+                <Card className="project_card" />
+                <Card className="project_card" />
+              </CardDeck>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="regular-wrapper">
+        <div>
+          <h2>Contact Me</h2>
+          <div className="fourth-floor col-xs-12">
+            <div className="container social-apps-container">
+              <div className="social-app col-xs-2">
+                <span href="#" onClick={e => e.preventDefault()}>
+                  <FontAwesomeIcon icon={faFacebookF} size="2x" />
+                </span>
+              </div>
+              <div className="social-app col-xs-2">
+                <span href="#" onClick={e => e.preventDefault()}>
+                  <FontAwesomeIcon icon={faGooglePlusG} size="2x" />
+                </span>
+              </div>
+              <div className="social-app col-xs-2">
+                <span href="#" onClick={e => e.preventDefault()}>
+                  <FontAwesomeIcon icon={faGithub} size="2x" />
+                </span>
+              </div>
+              <div className="social-app col-xs-2">
+                <span href="#" onClick={e => e.preventDefault()}>
+                  <FontAwesomeIcon icon={faSkype} size="2x" />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default AboutMe;
